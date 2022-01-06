@@ -12,7 +12,7 @@ import { Injectable } from '@angular/core';
 export class EditprofiledialogComponent implements OnInit {
   profileData: any;
   form: any;
-  description: any;
+  description: any = 'Edit your profile details';
 
   constructor(private profile: UserProfile, private fb: FormBuilder, private dialogRef: MatDialogRef<EditprofiledialogComponent>) { }
 
