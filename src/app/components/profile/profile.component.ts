@@ -27,6 +27,10 @@ export class ProfileComponent implements OnInit {
     dialogConfig.data = {
       userName: 'Gregory Strydom',
       userEmail: 'gregory.strydom079@gmail.com',
+      facebookUrl: 'https://www.facebook.com',
+      twitterUrl: 'https://www.twitter.com',
+      instagramUrl: 'https://www.instagram.com',
+      linkedinUrl: 'https://www.linkedin.com'
     };
 
     this.dialog.open(EditprofiledialogComponent, dialogConfig);
