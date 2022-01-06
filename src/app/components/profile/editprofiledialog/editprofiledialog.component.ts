@@ -21,7 +21,7 @@ export class EditprofiledialogComponent implements OnInit {
   }
 
   closeProfileDialog(): any {
-
+    this.dialogRef.close();
   }
 
   saveProfile(): any {
