@@ -1,0 +1,30 @@
+.new-but {
+  background-color: green;
+  color: aliceblue;
+  margin-right: 1em;
+  text-decoration: none;
+  padding: 0.7em 2em;
+  border-radius: 0.3em;
+}
+
+.new-but:hover {
+  cursor: pointer;
+}
+
+.clear-but {
+  background-color: red;
+  color: aliceblue;
+  margin-right: 1em;
+  text-decoration: none;
+  padding: 0.7em 2em;
+  border-radius: 0.3em;
+}
+
+.export-but {
+  background-color: blue;
+  color: aliceblue;
+  margin-right: 1em;
+  text-decoration: none;
+  padding: 0.7em 2em;
+  border-radius: 0.3em;
+}

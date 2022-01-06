@@ -1,0 +1,38 @@
+<section fxFlex fxLayout="column" fxLayoutAlign="center center">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Create Record</mat-card-title>
+      <mat-card-subtitle>Create a new record for your timesheet</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-content>
+      <form (ngSubmit)="onSubmit(f)" #f="ngForm" fxFlex fxLayout="column">
+        <mat-form-field>
+          <mat-label>Start Time:</mat-label>
+          <input matTimepicker type="text" name="startTime" id="startTime">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>End Time:</mat-label>
+          <input matTimepicker type="text" name="endTime" id="endTime">
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Task:</mat-label>
+          <mat-select [(ngModel)]="selectedValue" name="taskDescription">
+            <mat-option *ngFor="let task of tasks" [value]="task.value">
+              {{task.viewValue}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Hours Worked:</mat-label>
+          <input matInput type="text" ngModel name="hours" id="hours">
+        </mat-form-field>
+
+        <button type="button" mat-button color="warn">Back</button>
+        <button type="submit" mat-button color="primary" [disabled]="f.invalid">Save</button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>

@@ -1,0 +1,24 @@
+<mat-tab-group #tabGroup (selectedTabChange)="tabChanged($event)">
+  <mat-tab label="Monday">
+    <app-day [day]=days[0]></app-day>
+  </mat-tab>
+  <mat-tab label="Tuesday">
+    <app-day [day]=days[1]></app-day>
+  </mat-tab>
+  <mat-tab label="Wednesday">
+    <app-day [day]=days[2]></app-day>
+  </mat-tab>
+  <mat-tab label="Thursday">
+    <app-day [day]=days[3]></app-day>
+  </mat-tab>
+  <mat-tab label="Friday">
+    <app-day [day]=days[4]></app-day>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon class="tab-icon">description</mat-icon>
+      Week's Timesheet
+    </ng-template>
+    <app-fullweek></app-fullweek>
+  </mat-tab>
+</mat-tab-group>

@@ -1,0 +1,46 @@
+mat-icon {
+  transform: scale(5);
+  color: green;
+}
+
+.innerChilds {
+  max-width: 150px;
+  min-height: 150px;
+  max-height: 150px;
+  border: 1px solid black;
+}
+
+.innerParent {
+  width: 80%;
+  margin: 0 auto;
+}
+
+.invis {
+  width: 100%;
+  min-height: 2em;
+}
+
+mat-card:hover {
+  cursor: pointer;
+}
+
+h2 {
+  padding-top: 1em;
+  padding-left: 1em;
+}
+
+h3 {
+  color: white;
+}
+
+h3 > span {
+  vertical-align: middle;
+}
+
+.welcomeBox {
+  cursor: pointer;
+}
+
+mat-card-header {
+  background-color: #3F51B5;
+}

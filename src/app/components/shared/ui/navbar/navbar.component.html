@@ -1,0 +1,43 @@
+<mat-toolbar color="primary">
+  <div fxHide.sm fxHide.md fxHide.lg fxHide.xl>
+    <button mat-icon-button (click)="onSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </div>
+  <div>
+    <img class="brandImg" src="../../../../../assets/logo-noback.png" alt="Logo">
+    <span class="brandText">Tester Time Tracker</span>
+  </div>
+  <div fxFlex></div>
+  <div fxFlex fxLayout fxLayoutAlign="flex-end" fxHide.xs>
+    <ul fxLayout fxLayoutGap="10px" class="nav-items">
+      <li *ngIf="!isAuth"><a routerLink="register">Register</a></li>
+      <li *ngIf="!isAuth"><a routerLink="login">Login</a></li>
+      <li *ngIf="isAuth">
+        <a routerLink="create-timesheet">
+          <mat-icon class="full-links" matTooltip="Create a new timesheet">add</mat-icon>
+        </a>
+      </li>
+      <li *ngIf="isAuth">
+        <a routerLink="welcome">
+          <mat-icon class="full-links" matTooltip="Open an existing timesheet">folder</mat-icon>
+        </a>
+      </li>
+      <li *ngIf="isAuth">
+        <a routerLink="home">
+          <mat-icon class="full-links" matTooltip="Home">home</mat-icon>
+        </a>
+      </li>
+      <li *ngIf="isAuth">
+        <a routerLink="profile">
+          <mat-icon class="full-links" matTooltip="Profile">person_outline</mat-icon>
+        </a>
+      </li>
+      <li *ngIf="isAuth">
+        <a (click)="onLogout()" routerLink="logout">
+          <mat-icon class="full-links" matTooltip="Logout">logout</mat-icon>
+        </a>
+      </li>
+    </ul>
+  </div>
+</mat-toolbar>

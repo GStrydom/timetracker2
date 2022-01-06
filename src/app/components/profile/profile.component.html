@@ -1,0 +1,56 @@
+<section fxFlex fxLayoutAlign="center center">
+  <mat-card fxLayout="column" fxLayoutAlign="center center">
+    <mat-card-header>
+      <img src="../../../assets/profile.jpg" alt="Profile Image">
+    </mat-card-header>
+    <mat-card-title-group>
+      <mat-card-title>{{ profileData.userName }}</mat-card-title>
+      <mat-card-subtitle>{{ profileData.userEmail }}</mat-card-subtitle>
+    </mat-card-title-group>
+    <mat-card-content>
+      <mat-grid-list cols="4" rowHeight="3:1" class="grid-layout-custom">
+        <mat-grid-tile>
+          <a routerLink="">
+            <img src="../../../assets/icons8-facebook-48.png" alt="Facebook icon">
+          </a>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <a routerLink="">
+            <img src="../../../assets/icons8-twitter-48.png" alt="Twitter icon">
+          </a>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <a routerLink="">
+            <img src="../../../assets/icons8-instagram-logo-48.png" alt="Instagram icon">
+          </a>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <a routerLink="">
+            <img src="../../../assets/icons8-linkedin-48.png" alt="LinkedIn icon">
+          </a>
+        </mat-grid-tile>
+      </mat-grid-list>
+      <mat-grid-list cols="4" rowHeight="2:1">
+        <mat-grid-tile>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card>
+            <mat-card-title>Total Timesheets</mat-card-title>
+            <mat-card-content><h4>12</h4></mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+          <mat-card>
+            <mat-card-title>Most Recent</mat-card-title>
+            <mat-card-content><h4>Greg 06/09/21 - 10/09/21</h4></mat-card-content>
+          </mat-card>
+        </mat-grid-tile>
+        <mat-grid-tile>
+        </mat-grid-tile>
+      </mat-grid-list>
+    </mat-card-content>
+    <mat-card-actions>
+      <button (click)="openDialog()">Edit</button>
+    </mat-card-actions>
+  </mat-card>
+</section>

@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "timetrack-8b925"
+  },
+  "targets": {
+    "timetrack-8b925": {
+      "hosting": {
+        "timetracker": [
+          "timetrack-8b925"
+        ]
+      }
+    }
+  }
+}

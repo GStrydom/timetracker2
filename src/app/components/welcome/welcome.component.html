@@ -1,0 +1,146 @@
+<section class="invis"></section>
+
+<mat-card class="innerParent">
+  <mat-card-title>
+    <h2>Please open an existing timesheet or create a new one to get started...</h2>
+  </mat-card-title>
+</mat-card>
+<br />
+
+<mat-card class="innerParent">
+  <mat-card-header>
+    <h3><span>January</span></h3>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-grid-list cols="4" rowHeight="2:1">
+      <mat-grid-tile>
+        <mat-card class="innerChilds" fxFlex fxLayoutAlign="center center">
+          <mat-card-content>
+            <a routerLink="/create-timesheet" matTooltip="Create a new timesheet"><mat-icon>add</mat-icon></a>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile *ngFor="let timesheetName of timesheetNames">
+        <mat-card class="innerChilds" fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="timesheetName.timesheetID != 'timesheet_0'">
+          <mat-card-content>
+            <a (click)="openTimeSheet(timesheetName)" class="welcomeBox">{{ timesheetName.name }}</a>
+          </mat-card-content>
+          <mat-card-actions fxLayout="row">
+            <button (click)="openTimeSheet(timesheetName)" mat-button color="primary">Open</button>
+            <button (click)="deleteTimeSheet(timesheetName)" mat-button color="warn">Delete</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </mat-card-content>
+</mat-card>
+<br />
+
+<mat-card class="innerParent">
+  <mat-card-header>
+    <h3>February</h3>
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>
+<br />
+
+<mat-card class="innerParent">
+  <mat-card-header>
+    <h3>March</h3>
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>
+<br />
+
+<mat-card class="innerParent">
+  <mat-card-header>
+    <h3>April</h3>
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>
+<br />
+
+<mat-card class="innerParent">
+  <mat-card-header>
+    <h3>May</h3>
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>
+<br />
+
+<mat-card class="innerParent">
+  <mat-card-header>
+    <h3>June</h3>
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>
+<br />
+
+<mat-card class="innerParent">
+  <mat-card-header>
+    <h3>July</h3>
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>
+<br />
+
+<mat-card class="innerParent">
+  <mat-card-header>
+    <h3>August</h3>
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>
+<br />
+
+<mat-card class="innerParent">
+  <mat-card-header>
+    <h3>September</h3>
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>
+<br />
+
+<mat-card class="innerParent">
+  <mat-card-header>
+    <h3>October</h3>
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>
+<br />
+
+<mat-card class="innerParent">
+  <mat-card-header>
+    <h3>November</h3>
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>
+<br />
+
+<mat-card class="innerParent">
+  <mat-card-header>
+    <h3>December</h3>
+  </mat-card-header>
+  <mat-card-content>
+
+  </mat-card-content>
+</mat-card>
