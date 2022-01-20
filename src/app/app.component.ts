@@ -9,11 +9,6 @@ import {AuthService} from './components/auth/auth.service';
 export class AppComponent implements OnInit{
 
   constructor(private authService: AuthService) {}
-  sideNavOpened = false;
-
-  sideOpen(): any {
-
-  }
 
   ngOnInit(): void {
     this.authService.initAuthListener();

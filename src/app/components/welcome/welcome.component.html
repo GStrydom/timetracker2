@@ -20,10 +20,10 @@
           </mat-card-content>
         </mat-card>
       </mat-grid-tile>
-      <mat-grid-tile *ngFor="let timesheetName of timesheetNames">
-        <mat-card class="innerChilds" fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="timesheetName.timesheetID != 'timesheet_0'">
+      <mat-grid-tile *ngFor="let timesheetName of timesheets">
+        <mat-card class="innerChilds week1" fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="timesheetName.timesheetID != 'timesheet_0'">
           <mat-card-content>
-            <a (click)="openTimeSheet(timesheetName)" class="welcomeBox">{{ timesheetName.name }}</a>
+
           </mat-card-content>
           <mat-card-actions fxLayout="row">
             <button (click)="openTimeSheet(timesheetName)" mat-button color="primary">Open</button>

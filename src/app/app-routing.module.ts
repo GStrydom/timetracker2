@@ -15,9 +15,9 @@ const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'home', component: HomeComponent, canActivate: [AuthGuard]},
-  { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
+  { path: 'profile/:id', component: ProfileComponent, canActivate: [AuthGuard]},
   { path: 'welcome', component: WelcomeComponent, canActivate: [AuthGuard]},
-  { path: 'new-timesheet', component: NewRecordComponent, canActivate: [AuthGuard] },
+  { path: 'new-record', component: NewRecordComponent, canActivate: [AuthGuard] },
   { path: 'edit-timesheet', component: EditTimesheetComponent, canActivate: [AuthGuard] },
   { path: 'create-timesheet', component: CreateTimesheetComponent, canActivate: [AuthGuard] },
 ];

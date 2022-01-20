@@ -1,5 +1,9 @@
+section {
+  padding-top: 2em;
+}
+
 mat-card {
-  width: 750px;
+  max-width: 900px;
 }
 
 .grid-layout-custom{

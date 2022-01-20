@@ -1,4 +1,10 @@
-export interface User {
+export interface UserModel {
+  uid: string;
+  role: string;
   email: string;
-  userId: string;
+  username: string;
+  linkedinURL: string;
+  twitterURL: string;
+  facebookURL: string;
+  instagramURL: string;
 }

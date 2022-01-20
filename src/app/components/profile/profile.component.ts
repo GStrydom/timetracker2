@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { UserProfile } from './profile.service';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { EditprofiledialogComponent } from './editprofiledialog/editprofiledialog.component';
+import { AngularFirestoreDocument, AngularFirestore } from '@angular/fire/compat/firestore';
+import { Observable } from 'rxjs';
+import { UserModel } from '../auth/user.model';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-profile',
@@ -9,12 +12,20 @@ import { EditprofiledialogComponent } from './editprofiledialog/editprofiledialo
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  profileData: any;
+  private itemDoc: AngularFirestoreDocument<UserModel>;
+  item: Observable<UserModel>;
 
-  constructor(private profile: UserProfile, private dialog: MatDialog) { }
+  constructor(private dialog: MatDialog, public afAuth: AngularFireAuth, public afs: AngularFirestore) { }
+  public totalSheets;
+  public recentSheet;
 
   ngOnInit(): void {
-    this.profileData = this.profile.getData();
+    this.afAuth.currentUser.then((user) => {
+      this.itemDoc = this.afs.doc<UserModel>(`users/${user.uid}`);
+      this.item = this.itemDoc.valueChanges();
+    });
+    this.getTotalSheets();
+    this.getRecentSheet();
   }
 
   openDialog(): any {
@@ -25,14 +36,27 @@ export class ProfileComponent implements OnInit {
     dialogConfig.autoFocus = true;
 
     dialogConfig.data = {
-      userName: 'Gregory Strydom',
-      userEmail: 'gregory.strydom079@gmail.com',
-      facebookUrl: 'https://www.facebook.com',
-      twitterUrl: 'https://www.twitter.com',
-      instagramUrl: 'https://www.instagram.com',
-      linkedinUrl: 'https://www.linkedin.com'
+      userName: 'this.item.displayName',
+      userEmail: 'this.item.email',
+      facebookUrl: 'this.item.facebookURL',
+      twitterUrl: 'this.item.twitterURL',
+      instagramUrl: 'this.item.instagramURL',
+      linkedinUrl: 'this.item.linkedinURL'
     };
 
     this.dialog.open(EditprofiledialogComponent, dialogConfig);
+  }
+
+  getTotalSheets(): any {
+    this.totalSheets = 12;
+  }
+
+  getRecentSheet(): any {
+    this.recentSheet = 'Greg Timesheet 06/09/21 - 10/09/21';
+  }
+
+  // tslint:disable-next-line:typedef
+  fileChange(event) {
+    // Todo
   }
 }

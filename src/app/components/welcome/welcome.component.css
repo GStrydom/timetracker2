@@ -1,12 +1,17 @@
 mat-icon {
-  transform: scale(5);
+  transform: scale(4);
   color: green;
+  margin-top: 1.5em;
+}
+
+a {
+  vertical-align: middle;
 }
 
 .innerChilds {
-  max-width: 150px;
-  min-height: 150px;
-  max-height: 150px;
+  max-width: 100px;
+  min-height: 100px;
+  max-height: 100px;
   border: 1px solid black;
 }
 
@@ -43,4 +48,18 @@ h3 > span {
 
 mat-card-header {
   background-color: #3F51B5;
+}
+
+.week1 {
+  background-image: url("../../../assets/week1.png");
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+mat-card-content {
+  min-height: 100px;
+}
+
+mat-card-actions {
+  margin-left: 0.3em;
 }

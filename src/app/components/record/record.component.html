@@ -8,12 +8,12 @@
       <form (ngSubmit)="onSubmit(f)" #f="ngForm" fxFlex fxLayout="column">
         <mat-form-field>
           <mat-label>Start Time:</mat-label>
-          <input matTimepicker type="text" name="startTime" id="startTime">
+          <input mode="24h" ngModel placeholder="Please select time..." matTimepicker type="text" name="startTime" id="startTime">
         </mat-form-field>
 
         <mat-form-field>
           <mat-label>End Time:</mat-label>
-          <input matTimepicker type="text" name="endTime" id="endTime">
+          <input mode="24h" ngModel placeholder="Please select time..." matTimepicker type="text" name="endTime" id="endTime">
         </mat-form-field>
 
         <mat-form-field>
@@ -27,7 +27,7 @@
 
         <mat-form-field>
           <mat-label>Hours Worked:</mat-label>
-          <input matInput type="text" ngModel name="hours" id="hours">
+          <input matInput type="text" ngModel name="hoursWorked" id="hours">
         </mat-form-field>
 
         <button type="button" mat-button color="warn">Back</button>

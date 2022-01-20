@@ -20,5 +20,6 @@ export class HomeComponent implements OnInit {
     console.log('tabChangeEvent => ', tabChangeEvent);
     console.log('index => ', tabChangeEvent.index);
     this.transferService.setTabNameData(tabChangeEvent.index);
+    localStorage.setItem('currentTab', String(tabChangeEvent.index));
   }
 }

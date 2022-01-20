@@ -1,4 +1,4 @@
-import {AfterViewInit, Component, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
+import {Component, AfterViewInit, ElementRef, Input, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from '@angular/material/table';
 import {MatPaginator} from '@angular/material/paginator';
 import {MatSort} from '@angular/material/sort';
@@ -10,6 +10,8 @@ import {Router} from '@angular/router';
 import {TransferService} from '../../shared/transfer.service';
 
 import '../../../../assets/smtp.js';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+// import {UserModel} from '../../auth/user.model';
 
 declare let Email: any;
 
@@ -21,15 +23,16 @@ declare let Email: any;
 export class DayComponent implements OnInit, AfterViewInit {
   public mainColumns = ['date', 'startTime', 'taskDescription', 'endTime', 'hoursWorked', 'edit', 'delete'];
   public totalColumns = ['totalHours', 'amount'];
-  public mainDatasource: MatTableDataSource<Timesheet>;
-  public totalDatasource: MatTableDataSource<Totals>;
+  public mainDatasource = new MatTableDataSource<Timesheet>();
+  public totalDatasource = new MatTableDataSource<Totals>();
   public timesheetRecords;
   public records = [];
   public totals = [];
   public hours = 0;
-  public rate = 95.00;
-  public amount: any;
+  public rate = 95;
+  public amount = 0;
   public timesheet = '';
+  public user;
 
   @ViewChild('TABLE') table: ElementRef;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -38,57 +41,55 @@ export class DayComponent implements OnInit, AfterViewInit {
   @Input()
   day: string;
 
-  constructor(private timesheetService: TimesheetService, private router: Router, private transferService: TransferService) { }
+  constructor(private timesheetService: TimesheetService, private router: Router, private transferService: TransferService, public afAuth: AngularFireAuth) { }
 
   // tslint:disable-next-line:typedef
   async ngOnInit() {
-    // this.timesheet = this.getActiveTimesheet();
     this.timesheetRecords = await this.getData();
-    console.log(this.timesheetRecords);
-
-    // tslint:disable-next-line:prefer-for-of
-    // for (let doc = 0; doc < this.timesheetRecords.length; doc++) {
-    //     if (this.timesheetRecords[doc].day === undefined) {
-    //       console.log('Initial Found. No records found.');
-    //       return;
-    //     } else {
-    //       if (this.timesheetRecords[doc].day === 'Monday') {
-    //         console.log('A record was found.');
-    //         // tslint:disable-next-line:radix
-    //         this.hours += parseInt(this.timesheetRecords[doc].hoursWorked);
-    //         if (this.timesheetRecords[doc].taskDescription === 'Break') {
-    //           this.hours -= 1;
-    //         }
-    //         this.records.push(this.timesheetRecords[doc]);
-    //       } else {
-    //         console.log('Day not known');
-    //       }
-    //     }
-    //     this.timesheetRecords.push(this.timesheetRecords[doc]);
-    //   }
-    // this.setupDay();
-    // SharedModule.setupDay(this.timesheetRecords, this.hours, 'Monday');
-  }
-
-  ngAfterViewInit(): any {
-    // this.setupDay();
-  }
-
-  // tslint:disable-next-line:typedef
-  async fetchData() {
-    const data = [];
-    this.timesheetService.getTimeSheetRecords().subscribe(result => {
-      result.docs.forEach((doc) => {
-        data.push(doc.data());
-      });
-      return data;
-    });
+    this.setupDay();
   }
 
   // tslint:disable-next-line:typedef
   async getData() {
-    const data = await this.fetchData();
-    return data;
+    let records;
+    records = await this.timesheetService.getTimeSheetRecords();
+    return records;
+  }
+
+  // tslint:disable-next-line:typedef
+  setupDay() {
+    this.afAuth.currentUser.then((user) => {
+      this.user = user.uid;
+    });
+    this.timesheetRecords.subscribe(result => {
+      // tslint:disable-next-line:prefer-for-of
+      for (let doc = 0; doc < result.length; doc++) {
+        if (result[doc].uid === this.user) {
+          if (result[doc].day === undefined) {
+            // console.log('Initial Found. No records found.');
+            return;
+          } else {
+            if (result[doc].day === this.day) {
+              // console.log('A record was found.');
+              // tslint:disable-next-line:radix
+              this.hours += parseInt(result[doc].hoursWorked);
+              this.records.push(result[doc]);
+            } else {
+              // console.log('Day not known');
+            }
+          }
+        } else {
+          alert('No user found!');
+          return;
+        }
+      }
+
+      this.amount = this.hours * this.rate;
+      this.totals.push({totalHours: this.hours, amount: 'R ' + this.amount + '.00'});
+
+      this.mainDatasource.data = this.records;
+      this.totalDatasource.data = this.totals;
+    });
   }
 
   async exportAsExcel(): Promise<any> {
@@ -157,7 +158,11 @@ export class DayComponent implements OnInit, AfterViewInit {
     if (temp === 'true') {
       alert('Please create a timesheet before trying to add a record.');
     } else {
-      this.router.navigate(['/new-timesheet']).then();
+      this.router.navigate(['/new-record']).then();
     }
+  }
+
+  ngAfterViewInit(): void {
+    // Google yes.
   }
 }

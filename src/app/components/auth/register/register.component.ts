@@ -14,7 +14,8 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(form: NgForm): void {
+  // tslint:disable-next-line:typedef
+  onSubmit(form: NgForm) {
     this.authService.registerUser({
       email: form.value.email,
       password: form.value.password,

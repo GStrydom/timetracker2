@@ -18,9 +18,10 @@ export class TimesheetService {
     this.db.collection(timesheet).add(timesheetData).then();
   }
 
-  getTimeSheetRecords(): any{
+  // tslint:disable-next-line:typedef
+  getTimeSheetRecords() {
     const activeTimesheet = localStorage.getItem('activeSheet');
-    return this.db.collection(activeTimesheet).get();
+    return this.db.collection(activeTimesheet).valueChanges();
   }
 
   editRecordOnFirestore(timesheet): any {

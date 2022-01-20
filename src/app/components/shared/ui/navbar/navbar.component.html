@@ -29,12 +29,12 @@
         </a>
       </li>
       <li *ngIf="isAuth">
-        <a routerLink="profile">
+        <a routerLink="profile/:{{ userDisplayName }}">
           <mat-icon class="full-links" matTooltip="Profile">person_outline</mat-icon>
         </a>
       </li>
       <li *ngIf="isAuth">
-        <a (click)="onLogout()" routerLink="logout">
+        <a (click)="onLogout()">
           <mat-icon class="full-links" matTooltip="Logout">logout</mat-icon>
         </a>
       </li>
