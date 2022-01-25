@@ -31,5 +31,6 @@ export class LoginComponent implements OnInit, OnDestroy {
       password: form.value.password,
       displayName: ''
     });
+    localStorage.setItem('activeSheet', '');
   }
 }
