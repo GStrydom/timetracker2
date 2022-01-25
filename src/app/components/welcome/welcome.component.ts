@@ -11,17 +11,21 @@ import {AngularFireAuth} from '@angular/fire/compat/auth';
 export class WelcomeComponent implements OnInit {
   timesheets = [];
   public user;
+  public month;
 
   constructor(private timesheetService: TimesheetService, private router: Router, private afAuth: AngularFireAuth) { }
 
   // tslint:disable-next-line:typedef
   async ngOnInit() {
+    localStorage.setItem('activeSheet', '');
     await this.afAuth.currentUser.then((user) => {
       this.user = user.uid;
     });
 
     await this.getData();
     this.setup();
+
+    console.log(localStorage.getItem('activeSheet'));
   }
 
   // tslint:disable-next-line:typedef
@@ -29,7 +33,9 @@ export class WelcomeComponent implements OnInit {
     await this.timesheetService.getCollectionList().subscribe(result => {
       result.docs.forEach((doc) => {
         if (doc.data().uid === this.user) {
-          this.timesheets.push(doc.data());
+          if (doc.data().timesheetID !== 'timesheet_0') {
+            this.timesheets.push(doc.data());
+          }
         }
       });
     });
@@ -37,7 +43,11 @@ export class WelcomeComponent implements OnInit {
 
   // tslint:disable-next-line:typedef
   setup() {
-    // ToDo
+    console.log(this.timesheets);
+    // tslint:disable-next-line:prefer-for-of
+    for (let x = 0; x < this.timesheets.length; x++) {
+      this.timesheets[x].name = this.timesheets[x].name.split(' - ');
+    }
   }
 
   openTimeSheet(timeSheetName): any {
