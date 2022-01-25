@@ -64,6 +64,9 @@ import { MatCardModule } from '@angular/material/card';
 import { NgxDaterangepickerMd } from 'ngx-daterangepicker-material';
 import { DayComponent } from './components/weekdays/day/day.component';
 
+import { ErrorHandler } from '@angular/core';
+import { ErrorMetadataService } from './services/error-metadata.service';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -118,7 +121,7 @@ import { DayComponent } from './components/weekdays/day/day.component';
         ReactiveFormsModule,
         NgxDaterangepickerMd.forRoot()
     ],
-  providers: [AuthService, TimesheetService, UIService, TransferService, UserProfile],
+  providers: [AuthService, TimesheetService, UIService, TransferService, UserProfile, { provide: ErrorHandler, useClass: ErrorMetadataService}],
   bootstrap: [AppComponent],
   entryComponents: [EditprofiledialogComponent]
 })
