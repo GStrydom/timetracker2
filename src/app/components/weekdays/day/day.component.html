@@ -68,6 +68,6 @@
     <br />
     <div>
       <button mat-raised-button class="newRecBut" color="success" (click)="checkTable()">New Record</button>
-      <button class="excel-export-but" mat-raised-button color="primary" (click)="exportAsExcel()">Export as Excel</button>
-      <button mat-raised-button color="warn" (click)="emailToAdmin()">Email to Admin</button>
+      <button [disabled]="buttonsDisabled" class="excel-export-but" mat-raised-button color="primary" (click)="exportAsExcel()">Export as Excel</button>
+      <button [disabled]="buttonsDisabled" mat-raised-button color="warn" (click)="emailToAdmin()">Email to Admin</button>
     </div>
