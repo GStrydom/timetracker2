@@ -33,6 +33,7 @@ export class DayComponent implements OnInit, AfterViewInit {
   public amount = 0;
   public timesheet = '';
   public user;
+  public buttonsDisabled = false;
 
   @ViewChild('TABLE') table: ElementRef;
   @ViewChild(MatPaginator, {static: true}) paginator: MatPaginator;
@@ -45,15 +46,20 @@ export class DayComponent implements OnInit, AfterViewInit {
 
   // tslint:disable-next-line:typedef
   async ngOnInit() {
-    this.timesheetRecords = await this.getData();
-    this.setupDay();
+      this.timesheetRecords = await this.getData();
+      this.setupDay();
   }
 
   // tslint:disable-next-line:typedef
   async getData() {
-    let records;
-    records = await this.timesheetService.getTimeSheetRecords();
-    return records;
+    if (localStorage.getItem('activeSheet') === '') {
+      alert('Please select a timesheet or create a new one to add records.');
+      await this.router.navigate(['/welcome']);
+    } else {
+      let records;
+      records = await this.timesheetService.getTimeSheetRecords();
+      return records;
+    }
   }
 
   // tslint:disable-next-line:typedef
@@ -79,7 +85,7 @@ export class DayComponent implements OnInit, AfterViewInit {
             }
           }
         } else {
-          alert('No user found!');
+          this.buttonsDisabled = true;
           return;
         }
       }
