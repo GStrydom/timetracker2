@@ -12,7 +12,7 @@
     <h3><span>January</span></h3>
   </mat-card-header>
   <mat-card-content>
-    <mat-grid-list cols="4" rowHeight="2:1">
+    <mat-grid-list cols="6" rowHeight="1:1">
       <mat-grid-tile>
         <mat-card class="innerChilds" fxFlex fxLayoutAlign="center center">
           <mat-card-content>
@@ -21,13 +21,17 @@
         </mat-card>
       </mat-grid-tile>
       <mat-grid-tile *ngFor="let timesheetName of timesheets">
-        <mat-card class="innerChilds week1" fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="timesheetName.timesheetID != 'timesheet_0'">
+        <mat-card class="innerChilds" fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="timesheetName.month === 'January'">
           <mat-card-content>
-
+            <div>
+              <div>{{ timesheetName.startDate }}</div>
+              <div><span><strong>-</strong></span></div>
+              <div>{{ timesheetName.endDate }}</div>
+            </div>
           </mat-card-content>
           <mat-card-actions fxLayout="row">
-            <button (click)="openTimeSheet(timesheetName)" mat-button color="primary">Open</button>
-            <button (click)="deleteTimeSheet(timesheetName)" mat-button color="warn">Delete</button>
+            <button class="card-button" (click)="openTimeSheet(timesheetName)" mat-button color="primary">Open</button>
+            <button class="card-button but2" (click)="deleteTimeSheet(timesheetName)" mat-button color="warn">Delete</button>
           </mat-card-actions>
         </mat-card>
       </mat-grid-tile>
@@ -41,7 +45,30 @@
     <h3>February</h3>
   </mat-card-header>
   <mat-card-content>
-
+    <mat-grid-list cols="6" rowHeight="1:1">
+      <mat-grid-tile>
+        <mat-card class="innerChilds" fxFlex fxLayoutAlign="center center">
+          <mat-card-content>
+            <a routerLink="/create-timesheet" matTooltip="Create a new timesheet"><mat-icon>add</mat-icon></a>
+          </mat-card-content>
+        </mat-card>
+      </mat-grid-tile>
+      <mat-grid-tile *ngFor="let timesheetName of timesheets">
+        <mat-card class="innerChilds" fxFlex fxLayout="column" fxLayoutAlign="center center" *ngIf="timesheetName.month === 'Febuary'">
+          <mat-card-content>
+            <div>
+              <div>{{ timesheetName.startDate }}</div>
+              <div><span><strong>-</strong></span></div>
+              <div>{{ timesheetName.endDate }}</div>
+            </div>
+          </mat-card-content>
+          <mat-card-actions fxLayout="row">
+            <button class="card-button" (click)="openTimeSheet(timesheetName)" mat-button color="primary">Open</button>
+            <button class="card-button but2" (click)="deleteTimeSheet(timesheetName)" mat-button color="warn">Delete</button>
+          </mat-card-actions>
+        </mat-card>
+      </mat-grid-tile>
+    </mat-grid-list>
   </mat-card-content>
 </mat-card>
 <br />
